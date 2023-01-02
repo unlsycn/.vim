@@ -13,6 +13,10 @@ if exists('g:vscode')
   Plug 'asvetliakov/vim-easymotion'
   Plug 'zhaosheng-pan/vim-im-select'
   Plug 'machakann/vim-sandwich'
+  Plug 'bkad/CamelCaseMotion'
+  Plug 'kana/vim-textobj-user'
+  Plug 'kana/vim-textobj-entire'
+  Plug 'michaeljsmith/vim-indent-object'
   call plug#end()
 
 "==== style ====
@@ -20,16 +24,23 @@ if exists('g:vscode')
 
 "==== key bindings ====
   let mapleader=';'
+  "windows
   nnoremap <C-w>t <Cmd>call VSCodeNotify('workbench.action.terminal.focus')<CR>
   xnoremap <C-w>t <Cmd>call VSCodeNotify('workbench.action.terminal.focus')<CR>
-  nnoremap <C-w>b <Cmd>call VSCodeNotify('workbench.action.focusSideBar')<CR>
-  xnoremap <C-w>b <Cmd>call VSCodeNotify('workbench.action.focusSideBar')<CR>
+  nnoremap <C-w>e <Cmd>call VSCodeNotify('workbench.action.focusSideBar')<CR>
+  xnoremap <C-w>e <Cmd>call VSCodeNotify('workbench.action.focusSideBar')<CR>
   nnoremap <C-w>p <Cmd>call VSCodeNotify('workbench.action.focusPanel')<CR>
   xnoremap <C-w>p <Cmd>call VSCodeNotify('workbench.action.focusPanel')<CR>
+  "actions
+  nnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
+  xnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
 
 "==== input method switch ====
   let g:im_select_command='/mnt/c/Users/Humph/.bin/im-select.exe'
   let g:im_select_default='1033'
+
+"==== camel case motion ====
+  let g:camelcasemotion_key = '<leader>'
 
 "==== yank to clipboard ====
   set clipboard=unnamedplus
