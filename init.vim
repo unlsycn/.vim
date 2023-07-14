@@ -18,6 +18,7 @@ if exists('g:vscode')
     Plug 'kana/vim-textobj-user'
     Plug 'kana/vim-textobj-entire'
     Plug 'michaeljsmith/vim-indent-object'
+    Plug 'mg979/vim-visual-multi'
     call plug#end()
 
 "==== style ====
@@ -25,6 +26,7 @@ if exists('g:vscode')
 
 "==== key bindings ====
     let mapleader=';'
+    let g:VM_leader="'"
     "windows
     nnoremap <C-w>t <Cmd>call VSCodeNotify('workbench.action.terminal.focus')<CR>
     xnoremap <C-w>t <Cmd>call VSCodeNotify('workbench.action.terminal.focus')<CR>
@@ -53,6 +55,28 @@ if exists('g:vscode')
     let g:verible_format_arguments = '--column_limit=80 --indentation_spaces=4'
     let g:verible_path_regex = '.*kali-linux'
     vnoremap <Leader>f <Esc>:FormatSelection<CR>
+    
+" ==== THEME CHANGER
+"   function! SetCursorLineNrColorInsert(mode)
+"       " Insert mode: blue
+"       if a:mode == "i"
+"           call VSCodeNotify('nvim-theme.insert')
+
+"       " Replace mode: red
+"       elseif a:mode == "r"
+"           call VSCodeNotify('nvim-theme.replace')
+"       endif
+"   endfunction
+
+"   augroup CursorLineNrColorSwap
+"       autocmd!
+"       autocmd ModeChanged *:[vV\x16]* call VSCodeNotify('nvim-theme.visual')
+"       autocmd ModeChanged *:[R]* call VSCodeNotify('nvim-theme.replace')
+"       autocmd InsertEnter * call SetCursorLineNrColorInsert(v:insertmode)
+"       autocmd InsertLeave * call VSCodeNotify('nvim-theme.normal')
+"       autocmd CursorHold * call VSCodeNotify('nvim-theme.normal')
+"   augroup END
+
 "== Space vim ==
 else
     execute 'source' fnamemodify(expand('<sfile>'), ':h').'/main.vim'
