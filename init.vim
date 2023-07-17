@@ -53,7 +53,7 @@ if exists('g:vscode')
 
 "==== vim-verible-format ====
     let g:verible_format_arguments = '--column_limit=80 --indentation_spaces=4'
-    let g:verible_path_regex = '.*kali-linux'
+    let g:verible_path_regex = '.*gentoo'
     vnoremap <Leader>f <Esc>:FormatSelection<CR>
     
 " ==== THEME CHANGER
@@ -82,28 +82,17 @@ else
     execute 'source' fnamemodify(expand('<sfile>'), ':h').'/main.vim'
 endif
 
-" ==== yank to clipboard ==== DEPRECATED
-    " let s:clip = '/mnt/c/Windows/System32/clip.exe'
-    " if executable(s:clip)
-        " augroup WSLYank
-            " autocmd!
-            " autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-        " augroup END
-    " endif
 " ==== shared clipboard ====
-    let s:clip = '/mnt/c/Users/Humph/.bin/win32yank.exe'
-    if executable(s:clip)
-        set clipboard+=unnamedplus
-        let g:clipboard = {
-      \   'name': 'win32yank-wsl',
-      \   'copy': {
-      \      '+': s:clip.' -i --crlf',
-      \      '*': s:clip.' -i --crlf',
-      \    },
-      \   'paste': {
-      \      '+': s:clip.' -o --lf',
-      \      '*': s:clip.' -o --lf',
-      \   },
-      \   'cache_enabled': 0,
-      \ } 
-    endif
+set clipboard+=unnamedplus
+let g:clipboard = {
+        \   'name': 'WslClipboard',
+        \   'copy': {
+        \      '+': 'clip.exe',
+        \      '*': 'clip.exe',
+        \    },
+        \   'paste': {
+        \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        \   },
+        \   'cache_enabled': 0,
+        \ }
