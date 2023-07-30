@@ -2,9 +2,10 @@ local g = vim.g
 local opt = vim.opt
 local keymap = vim.keymap
 
+--- style ---
+opt.guicursor = { "i:hor20", "n-v:block" }
+
 --- key bindings ---
-g.mapleader = ";"
-g.VM_leader = "'"
 -- windows
 keymap.set({"n", "x"}, "<C-w>t", function() require("vscode-neovim").notify('workbench.action.terminal.focus') end)
 keymap.set({"n", "x"}, "<C-w>e", function() require("vscode-neovim").notify('workbench.action.focusSideBar') end)

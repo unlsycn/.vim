@@ -13,8 +13,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local g = vim.g
-local opt = vim.opt
-local keymap = vim.keymap
 local api = vim.api
 require("lazy").setup({
   {
@@ -44,17 +42,24 @@ require("lazy").setup({
       g.operator_sandwich_no_default_key_mappings = true
     end,
     config = function()
-      keymap.set({"n", "x", "o"}, "<leader>a", "<Plug>(sandwich-add)")
-      keymap.set({"n", "x"}, "<leader>d", "<Plug>(sandwich-delete)")
-      keymap.set({"n", "x"}, "<leader>r", "<Plug>(sandwich-replace)")
-      keymap.set("n", "<leader>db", "<Plug>(sandwich-delete-auto)")
-      keymap.set("n", "<leader>rb", "<Plug>(sandwich-replace-auto)")
-
-      api.nvim_set_hl(0, "OperatorSandwichBuns", {fg="#aa91a0", underline=true, ctermfg=172, cterm={underline=true}})
-      api.nvim_set_hl(0, "OperatorSandwichChange", {fg="#edc41f", underline=true, ctermfg=yellow, cterm={underline=true}})
-      api.nvim_set_hl(0, "OperatorSandwichAdd", {fg="#b1fa87", underline=false, ctermfg=green})
-      api.nvim_set_hl(0, "OperatorSandwichDelete", {fg="#cf5963", underline=false, ctermfg=red})
-    end
+      api.nvim_set_hl(0, "OperatorSandwichBuns", {
+        fg = "#aa91a0",
+        underline = true,
+        ctermfg = 172,
+        cterm = { underline = true }
+      })
+      api.nvim_set_hl(0, "OperatorSandwichChange",
+        { fg = "#edc41f", underline = true, ctermfg = yellow, cterm = { underline = true } })
+      api.nvim_set_hl(0, "OperatorSandwichAdd", { fg = "#b1fa87", underline = false, ctermfg = green })
+      api.nvim_set_hl(0, "OperatorSandwichDelete", { fg = "#cf5963", underline = false, ctermfg = red })
+    end,
+    keys = {
+      { "<leader>a",  "<Plug>(sandwich-add)",          mode = { "n", "x", "o" } },
+      { "<leader>d",  "<Plug>(sandwich-delete)",       mode = { "n", "x" } },
+      { "<leader>r",  "<Plug>(sandwich-replace)",      mode = { "n", "x" } },
+      { "<leader>db", "<Plug>(sandwich-delete-auto)",  mode = "n" },
+      { "<leader>rb", "<Plug>(sandwich-replace-auto)", mode = "n" }
+    }
   },
   {
     "bkad/CamelCaseMotion",
@@ -64,7 +69,14 @@ require("lazy").setup({
   },
   {
     "kana/vim-textobj-entire",
-    dependencies="kana/vim-textobj-user"
+    dependencies = "kana/vim-textobj-user"
   },
   "michaeljsmith/vim-indent-object",
+  {
+    "mg979/vim-visual-multi",
+    config = function()
+      g.VM_leader = "\\"
+      g.VM_theme = "neon"
+    end
+  }
 })
