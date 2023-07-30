@@ -30,10 +30,18 @@ require("lazy").setup({
   },
   {
     "ggandor/leap.nvim",
+    name = "leap",
     lazy = false,
     dependencies = "tpope/vim-repeat",
     config = function()
       require('leap').add_default_mappings(true)
+    end
+  },
+  {
+    "ggandor/flit.nvim",
+    dependencies = "leap",
+    config = function()
+      require("flit").setup()
     end
   },
   {
