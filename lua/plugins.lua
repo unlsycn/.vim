@@ -23,12 +23,6 @@ require("lazy").setup({
     end
   },
   {
-    "zhaosheng-pan/vim-im-select",
-    config = function()
-      g.im_select_default = "1033"
-    end
-  },
-  {
     "ggandor/leap.nvim",
     name = "leap",
     lazy = false,
