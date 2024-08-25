@@ -1,15 +1,16 @@
 vim.opt.clipboard = "unnamedplus"
-local clip = "win32yank.exe"
-if vim.fn.executable(clip) then
+local copy = "wl-copy"
+local paste = "wl-paste"
+if vim.fn.executable(copy) == 1 and vim.fn.executable(paste) == 1 then
   vim.g.clipboard = {
       name = clip,
       copy = {
-          ["+"] = clip .. " -i --crlf",
-          ["*"] = clip .. " -i --crlf",
+      ["+"] = copy,
+      ["*"] = copy,
       },
       paste = {
-          ["+"] = clip .. " -o --lf",
-          ["*"] = clip .. " -o --lf",
+      ["+"] = paste .. " -n",
+      ["*"] = paste .. " -n",
       },
       cache_enabled = true,
   }
