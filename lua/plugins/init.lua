@@ -1,9 +1,8 @@
 return {
   {
     "stevearc/conform.nvim",
-    config = function()
-      require "configs.conform"
-    end,
+    event = 'BufWritePre', -- uncomment for format on save
+    opts = require "configs.conform",
   },
 
   {
@@ -17,6 +16,12 @@ return {
       require("nvim-tree").setup {}
     end,
   },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   config = function()
+  --     require "configs.lspconfig"
+  --   end,
+  -- },
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
