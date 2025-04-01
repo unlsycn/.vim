@@ -72,4 +72,11 @@ return {
 			require("configs.nnn")
 		end,
 	},
+	{
+		"mg979/vim-visual-multi",
+		config = function()
+			vim.g.VM_leader = "\\"
+			vim.g.VM_theme = "neon"
+		end,
+	},
 }
